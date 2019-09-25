@@ -24,26 +24,38 @@ function median_finder(x, coordinate)
 end
 
 
-function binarysearch_lower(x, left, right, value)
+function binarysearch_lower(x, left, right, value, coordinate)
     # Searching for a value worth less than value, return next index
     if left <= right
-        q = floor((left+right)/2)
-        if x[q] < value && x[q+1] == value
+        q = Int(floor((left+right)/2))
+        if x[q, coordinate] < value && x[q+1, coordinate] >= value
             return q + 1
-        elseif value < x[q]
-            return binarysearch_lower(x, left, q - 1, value)
+        elseif value <= x[q, coordinate]
+            return binarysearch_lower(x, left, q - 1, value, coordinate)
         else
-            return binarysearch_lower(x, q + 1, right, value)
+            return binarysearch_lower(x, q + 1, right, value, coordinate)
         end
     else
-        return nothing
+        return -1
     end
 end
 
-function binarysearch_higher(x, left, right, value)
+
+function binarysearch_higher(x, left, right, value, coordinate)
     # Searching for a value worth more than value, return previous index
-
-
+    # Searching for a value worth less than value, return next index
+    if left <= right
+        q = Int(floor((left+right)/2))
+        if x[q, coordinate] > value && x[q-1, coordinate] <= value
+            return q - 1
+        elseif value < x[q, coordinate]
+            return binarysearch_higher(x, left, q - 1, value, coordinate)
+        else
+            return binarysearch_higher(x, q + 1, right, value, coordinate)
+        end
+    else
+        return -1
+    end
 end
 
 # TESTING GROUNDS
