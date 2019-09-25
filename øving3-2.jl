@@ -1,12 +1,21 @@
 function binaryintervalsearch(x, delta, coordinate)
     # We assume that 2d list x contains only integers!
-    median = median_finder(x, coordinate)
+    if length(x) == 0
+        println("Meh")
+        return [-1 -1]
+    end
+    
+    median = median_finder(x, coordinate)   #Return [median median_index]
     low_value = ceil(median[1] - delta)
     high_value = floor(median[1] + delta)
     
+    lower_index = binarysearch_lower(x, 1, median[2], low_value, coordinate)
+    higher_index = binarysearch_higher(x, median[2]+1, length(x)/2, high_value, coordinate)
 
-    lower_index = binarysearch_lower(x, 1, median[2], low_value )
-    higher_index = binarysearch_higher(x, median[2]+1, high_value)
+    if lower_index>higher_index
+        return [-1 -1]
+    end
+    return [lower_index higher_index]
 
 end
 
@@ -23,7 +32,6 @@ function median_finder(x, coordinate)
     end
 end
 
-
 function binarysearch_lower(x, left, right, value, coordinate)
     # Searching for a value worth less than value, return next index
     if left <= right
@@ -36,14 +44,12 @@ function binarysearch_lower(x, left, right, value, coordinate)
             return binarysearch_lower(x, q + 1, right, value, coordinate)
         end
     else
-        return -1
+        return Int(left)    #This happends if all values are within delta-range
     end
 end
 
-
 function binarysearch_higher(x, left, right, value, coordinate)
     # Searching for a value worth more than value, return previous index
-    # Searching for a value worth less than value, return next index
     if left <= right
         q = Int(floor((left+right)/2))
         if x[q, coordinate] > value && x[q-1, coordinate] <= value
@@ -54,17 +60,19 @@ function binarysearch_higher(x, left, right, value, coordinate)
             return binarysearch_higher(x, q + 1, right, value, coordinate)
         end
     else
-        return -1
+        return Int(right)   #This happends if all values are within delta-range
     end
 end
 
-# TESTING GROUNDS
 
+
+# TESTING GROUNDS
 A = [1 9; 2 3; 3 100; 4 1; 5 0; 6 9] # Sorted by coordinate = 1
-B = [2 2; 10 5; 21 7; 8 8; 12 12]                                       # Sorted by coordinate = 2
+B = [2 2; 10 3; 21 7; 8 11; 12 12]                                       # Sorted by coordinate = 2
 
 C = [1 9; 3 33; 5 100; 7 111; 9 112; 12 12]
 D = []
 
-binaryintervalsearch(A, 1, 1)
-binaryintervalsearch(B, 3.5, 2)
+println(binaryintervalsearch(A, 1, 1))
+println(binaryintervalsearch(B, 5, 2))
+println(binaryintervalsearch([1 2; 2 0; 3 3; 4 4], 0.25, 1))
