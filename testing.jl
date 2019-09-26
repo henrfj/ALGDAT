@@ -12,7 +12,6 @@ y = A[4:end, :]
 # println(x)
 # println(y)
 # --------------------------------------------------------
-y_left = reshape(typeof(y), (0, 2))
 yleft  = zeros(typeof(y[1]), (0, 2))
 
 println(y_left, yleft)
