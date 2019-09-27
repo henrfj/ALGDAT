@@ -6,7 +6,6 @@ function splitintwo(x,y)
     y_left = zeros(typeof(y[1]), (0, 2))
     y_right = zeros(typeof(y[1]), (0, 2))
     
-    
     # Iterate through y
     for i = 1:size(y, 1)
         # element = [y[i,1] y[i,2]] This and the next line is  the same
@@ -21,6 +20,7 @@ function splitintwo(x,y)
     return x_left, x_right, y_left, y_right
 end
 
+# THIS INARRAY FUNCTION IS BEAUTIFULLY ENGINEERED BY @EIRIK-ff, PLZ FOLLOW HIM!
 
 function inarray(sub, x)
     for i = 1:size(x, 1)
@@ -33,8 +33,8 @@ function inarray(sub, x)
 end
 
 
-x = [1.0 2.0; 2.0 3.0; 3.0 2.0; 4.0 5.0; 6.0 6.0; 7.0 1.0]
-y = [7.0 1.0; 1.0 2.0; 3.0 2.0; 2.0 3.0; 4.0 5.0; 6.0 6.0]
+x = [1.0 2.0; 1.0 3.0; 1.0 2.0; 1.0 5.0; 1.0 6.0; 1.0 1.0]
+y = [1.0 1.0; 1.0 2.0; 1.0 2.0; 1.0 3.0; 1.0 5.0; 1.0 6.0]
 
 a, b, c, d = splitintwo(x,y)
 
