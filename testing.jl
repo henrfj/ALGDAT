@@ -37,10 +37,14 @@ end
 A = ["hai", "nzi", "skje", "felt", "hodetelefon", "sylofon"]
 #print(A[5][5])
 
-for j in 1:length(A)
-    C[chartodigit(A[j][2])] += 1
+function max_len(A)
+    max_len = length(A[1])
+    for elem in A
+        if length(elem) > max_len
+            max_len = length(elem)
+        end
+    end
+    return max_len
 end
 
-for j in length(A):-1:1
-    println(j)
-end
+println(max_len(A))

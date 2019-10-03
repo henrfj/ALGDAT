@@ -35,4 +35,4 @@ end
 
 
 println(A)
-println(countingsortletters(A,1))
+println(countingsortletters(A,2))
