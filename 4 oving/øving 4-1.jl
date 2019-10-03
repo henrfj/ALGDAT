@@ -5,12 +5,8 @@ A = ["hei", "nei", "skje", "felt", "hodetelefon", "sylofon"]
 function countingsortletters(A,position)
     # Antar at alle element i A er lange nok til å inneholde 'position'
     # Anta at alle bokstaver i strengene er mellom a og z
-    C = []
-
-    for i in 1:26
-        push!(C, 0)
-    end
-
+    C = fill(0, 26)
+    B = fill("", length(A))
     for j in 1:length(A)
         C[chartodigit(A[j][position])] += 1
     end
@@ -19,10 +15,11 @@ function countingsortletters(A,position)
         C[i] += C[i - 1]
     end
     # C is now cumelative, with C[i] containing number of elements less or equal to i
-    for j in length(A):1
-        
+    for j in length(A):-1:1
+        B[C[chartodigit(A[j][position])]] = A[j]
+        C[chartodigit(A[j][position])] -= 1
     end
-
+    return B
 end
 
 
@@ -36,3 +33,6 @@ function chartodigit(character)
 end
 
 
+
+println(A)
+println(countingsortletters(A,1))

@@ -41,4 +41,6 @@ for j in 1:length(A)
     C[chartodigit(A[j][2])] += 1
 end
 
-print(C)
+for j in length(A):-1:1
+    println(j)
+end
