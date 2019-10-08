@@ -34,7 +34,7 @@ end
 # dett blir en matrise
 
 # println(C)
-A = ["hai", "nzi", "skje", "felt", "hodetelefon", "sylofon"]
+
 #print(A[5][5])
 
 function max_len(A)
@@ -47,4 +47,8 @@ function max_len(A)
     return max_len
 end
 
-println(max_len(A))
+
+A = ["hai", "nzi", "skje", "felt", "hodetelefon", "sylofon"]
+B = [rpad(s, max_len(A), '`') for s in A]
+println(B)
+# println(max_len(A))
