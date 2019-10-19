@@ -27,7 +27,7 @@ end
 
 
 
-
+"""
 ### Tester ###
 # Disse testene blir kjørt når du kjører filen
 # Du trenger ikke å endre noe her, men du kan eksperimentere!
@@ -47,3 +47,4 @@ end
 println("\nFungerte alt? Prøv å kjør koden i inginious!")
 println("Husk at disse testene ikke alltid sjekker alle edge-cases")
 println("---------------------------------------------------------\n\n")
+"""
