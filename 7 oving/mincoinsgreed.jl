@@ -14,11 +14,13 @@ function mincoinsgreedy(coins, value)
             value -= coin
             count += 1
         end
+        if value == 0
+            # Just for optimization
+            break
+        end
     end
    return count
 end
-
-
 
 ### Tester ###
 # Disse testene blir kjørt når du kjører filen
