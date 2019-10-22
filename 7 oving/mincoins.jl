@@ -2,21 +2,47 @@
 En mer generell metode for å finne mincoins. Bruker DP (if you know what I mean)
 """
 
-include("./usegreed.jl")
-include("./mincoinsgreed.jl")
-
-
-function mincoins(coins, value)
-    # Om du ikke trenger inf kan du fjerne den
-    inf = typemax(Int)
-    if usegreed(coins)
-        return mincoinsgreed(coins, value)
+function usegreed(coins)
+  for i in 1:length(coins)-1
+    if coins[i] % coins[i+1] != 0
+      return false
     end
+  end
+  return true
+end
 
-    
+function mincoinsgreedy(coins, value)
+  count = 0
+  for coin in coins
+    while value >= coin
+      value -= coin
+      count += 1
+    end
+  end
+  return count
+end
+
+function mincoinsdynamic(coins, value)
+  counts=[0]
+  for i in 2:value+1
+    push!(counts, counts[i-1]+1)
+    for coin in coins
+      if coin < i && counts[i-coin]+1<counts[i]
+        counts[i] = counts[i-coin]+1
+      end
+    end
+  end
+  return counts[value+1]
 end
 
 
+function mincoins(coins, value)
+  inf = typemax(Int)
+  if usegreed(coins)
+    return mincoinsgreedy(coins, value)
+  end
+  return mincoinsdynamic(coins, value) 
+end
 
 
 
