@@ -22,6 +22,21 @@ function mincoinsgreedy(coins, value)
   return count
 end
 
+"""
+DP:
+
+Starter med nederste delproblem, som er å skulle fylle opp value = 1.
+For hver iterasjon går vi opp et nivå, til å fylle opp value = value + 1
+Da kan vi alltids push!(counts, counts[i-1]+1), som er løsningen der vi bare slenger på en ener.
+Men hvis vi finner en bedre løsning, så bytter vi ut denne løsningen.
+
+=>  hvordan finner vi en bedre løsning?
+    Vi undersøker om vi kan trekke fra verdien av coin,
+    og så bruke en tidligere løsning, som vil gi en lavere antall
+    coins enn den vi har nå. (målet er en lavest mulig count!)
+"""
+
+
 function mincoinsdynamic(coins, value)
   counts=[0]
   for i in 2:value+1
