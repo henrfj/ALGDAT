@@ -1,3 +1,29 @@
+
+using DataStructures: Queue, enqueue!, dequeue!
+
+l = []
+
+append!(l, [(4, 3)])
+append!(l, [(4, 3)])
+append!(l, [(4, 3)])
+append!(l, [(4, 3)])
+append!(l, [(4, 3)])
+
+println("Tuple-list: ", l)
+
+
+
+q = Queue{Int}()
+for i in 1:15
+    enqueue!(q, i)
+end
+
+while length(q) > 0
+    dequeue!(q)
+end
+
+# println("q Is empty")
+
 maze = [0 0 0 0 0
         0 1 1 1 0
         0 1 0 0 0
