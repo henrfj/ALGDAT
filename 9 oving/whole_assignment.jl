@@ -73,18 +73,34 @@ function findclusters(E, n, k)
         append!(nodes, [node])
     end
 
+    # Sorted by the weight, nondecreasingly
     sort!(E)
 
-    for j in 1:length(E)
-        # edge = E[j][2:3]
+    # In the beginning all nodes are in independet sets
+    independet_sets = length(nodelist)
+    
+    # Unifies the nodes of nodelist, until we have k sets left.
+    j = 1
+    while independet_sets > k
         u = E[j][2]
         v = E[j][3]
         if findset(u) != findset(v)
             union!(nodes[u], nodes[v])
+            independet_sets -= 1
         end
+        j += 1
+        if j > length(E)
+            break
+        ends
+    end
 
+    # Make a correct return-format
+    return_list = Vector{Vector{DisjointSetNode}()}()
+    for node in nodelist
+        if findset(u) == findset(v)
+            
 
-
+        end
     end
 
 

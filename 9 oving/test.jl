@@ -26,3 +26,15 @@ append!(vec, [node3])
 E = [(1, 2, 3), (4, 5, 6), (7, 8, 9), (10, 11, 12)]
 println(E[1][3])
 println(E[3][1:3])
+
+println("Double")
+l = Array{Int}(undef, 3, 2)
+println(l)
+l[1, 1] = 10
+println(l)
+println(l[1])
+# Now say we need to extend one set...
+# resize!(l[1], 10)
+
+println(l)
+
