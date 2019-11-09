@@ -31,24 +31,32 @@ function general_dijkstra!(G, w, s, reverse=false)
     Uses update! (RELAX) and initialize! to find shortes path to all nodes in G.
 
     param G: is the graph struct
-    param w: is hash-table of edge-weights
+    param w: is hash-table of edge-weights - w[(u, v)]
     param s: is the first element in G.V, and has name="A"
     param reverse:
-    return: nothing; in place
+    return: nothing; its an in-place algorithm
     """
     initialize!(G, s)
     Q = PriorityQueue(u => u.d for u in G.V)
-    Ø = PriorityQueue{Node, Float64}()
-    while Q != Ø # Find a solution for this
+    for l in 1:length(G.V)
         u = dequeue!(Q)
         for v in G.Adj[u]
-            update!(u, v, w[(u,v)])
+            # The given Relax-func didn't update the key in PriorityQueue
+            ## THIS IS A RELAX FUNCTION ##
+            if v.d > u.d + w[(u, v)]
+                # Similar to the basic update! algorithm, 
+                # just updating the PriorityQueue aswell
+                delete!(Q, v)
+                 v.d = u.d + w[(u, v)]
+                 v.p = u
+                enqueue!(Q, v => v.d)
+            end
         end
     end
 end
 
 
-# Theese might not be correct for Dijkstra's algorithm
+## These are the given algorithms ##
 """
 function initialize!(G, s)
     for node in G.V
