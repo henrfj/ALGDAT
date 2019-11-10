@@ -35,7 +35,7 @@ end
 
 ### Task 2: Transitive-Closure
 
-### Just use last task, and reformat to correct matrix T. All weights below Inf will be set to 1 (as there exists any path)
+### Just useing last task, and reformat to correct matrix T. All weights below Inf will be set to 1 (as there exists any path)
 ### while all weight == 0 will also be set to 1, as there is a path to self. Inf distances means no path exists => 0.
 
 function transitive_closure(adjacency_matrix, nodes)
@@ -68,4 +68,5 @@ function transitive_closure(adjacency_matrix, nodes)
     return D
 end
 
-# Husk å bruk generalisert Floyd-Warshall fra forrige oppgave
+
+### TASK 3: Shulze ranking
