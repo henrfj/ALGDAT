@@ -1,5 +1,23 @@
-# PQ
 using DataStructures: PriorityQueue, enqueue!, dequeue!, peek
+
+
+function operator_input(f, g)
+    return f(1, g(3, 2))
+end
+x = operator_input(min, +)
+println(x)
+
+
+
+
+
+
+
+M = zeros(Int64, 5, 5)
+M[3, 2] = 2
+println(M)
+P = M
+println(P[3, 2])
 
 I = []
 push!(I, "hei")
